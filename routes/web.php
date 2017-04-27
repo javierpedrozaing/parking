@@ -15,10 +15,7 @@ Route::get('/', function () {
 });
 
 
-Route::post('get_data_intro', function () {
-    return response()
-            ->json(['name' => 'Abigail', 'state' => 'CA'])
-            ->withCallback($request->input('callback'));
-});
+// Route::post('/entrada', 'HomeController@get_data_intro');
+Route::post('/entrada', array('as' => 'entrada', 'uses' => 'HomeController@get_data_intro'));
 
 

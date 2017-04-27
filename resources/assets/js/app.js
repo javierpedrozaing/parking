@@ -22,27 +22,3 @@ const app = new Vue({
 });
 
 
-
-$("#entrada").click(function(){
-   $.ajax({
-        url: "{{ route('get_data_intro')}}",
-        data: "name="+name+"&_token={{ csrf_token()}}",
-        dataType: "json",
-        method: "POST",
-        success: function(result)
-        {
-            if (result['result'] == 'ok')
-            {
-
-            }
-            else
-            {
-
-            }
-        },
-        fail: function(){
-        },
-        beforeSend: function(){
-        }
-    });
-});

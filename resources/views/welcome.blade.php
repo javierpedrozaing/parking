@@ -10,6 +10,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
      
     </head>
     <body>
@@ -85,5 +86,34 @@
                 </div>
             </div>
         
+
+    <script>
+                
+        $("#entrada").click(function(){
+           $.ajax({
+                url: "{{ route('entrada')}}",
+                data: "name="+name+"&_token={{ csrf_token()}}",
+                dataType: "json",
+                method: "POST",
+                success: function(result)
+                {
+                    if (result['result'] == 'ok')
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                },
+                fail: function(){
+                },
+                beforeSend: function(){
+                }
+            });
+        });
+
+    </script>
+
     </body>
 </html>
