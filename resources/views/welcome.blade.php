@@ -1,24 +1,14 @@
-<!doctype html>
-<html lang="{{ config('app.locale') }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+ @extends("layouts.app");
 
-        <title>Laravel</title>
+@section('title')
+Home
+@endsection
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-     
-    </head>
-    <body>
-    <form class="form-inline" style="padding:10% 20%;">    
+ @section('contentForm')
+    <form class="form-inline" style="padding:5% 10%;">    
         {{ csrf_field() }}    
-            <div class="row"  >
-
-                <div class="col-xs-12 col-md-3">
+            <div class="row" >
+                <div class="col-xs-12 col-sm-3 col-md-3">
                     <div class="form-group">
                        <label  for="exampleInputEmail3">Tipo de vehiculo:</label>
                         <select class="form-control">
@@ -27,12 +17,10 @@
                             <option>MOTO</option>
                             <option>CAMION</option>
                             <option>CICLA</option>                            
-                        </select>
-                        
+                        </select>                        
                     </div>
                 </div>    
-
-                <div class="col-xs-12 col-md-3">
+                <div class="col-xs-12 col-sm-4 col-md-3">
                     <div class="form-group">
                        <label  for="exampleInputEmail3">Placa:</label>
                         <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">
@@ -40,80 +28,75 @@
                     </div>
                 </div> 
                   
-
-                <div class="col-xs-12 col-md-2">
+                <div class="col-xs-12 col-sm-1 col-md-3">
                     <div class="form-group">
                         <button type="button" class="btn btn-primary btn-lg btn-block" id="entrada_btn">ENTRADA</button>
                     </div>
                     
                 </div>
 
-                <div class="col-xs-12 col-md-2">
+                <div class="col-xs-12 col-sm-1 col-md-3">
 
                      <div class="form-group">
                         <button type="button" class="btn btn-primary btn-lg btn-block" id="salida_btn">SALIDA</button>
                     </div>
-                </div>
-                
-
+                </div>            
 
             </div>
 <br>
 <hr class="half-rule"/>
-
-            <div class="row">                
-                <div class="col-xs-12 col-md-3">
-                    <label  for="exampleInputEmail3">Fecha Entrada:</label>
-                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">
-                    <label  for="exampleInputEmail3">Hora Entrada:</label>
-                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">
-
-                    <label  for="exampleInputEmail3">Hora Saluda:</label>
-                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">
-
-                    <label  for="exampleInputEmail3">Hora Salida:</label>
-                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">
+            <div class="row">   
+            <div class="panel panel-primary col-xs-12 col-sm-4 col-md-4" style="padding:20px;">             
+                <div >
+                    <label  for="exampleInputEmail3">Fecha Entrada:</label><br>
+                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input"><br>
+                    <label  for="exampleInputEmail3">Hora Entrada:</label><br>
+                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">    <br>        
+                    <label  for="exampleInputEmail3">Hora Salida:</label><br>
+                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input"><br>
                 </div>
 
-
-                <div class="col-xs-12 col-md-2">
-                    <label  for="exampleInputEmail3">Tipo de Vehículo:</label>
-                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">
-                    <label  for="exampleInputEmail3">Placa:</label>
-                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">
-                    <label  for="exampleInputEmail3">Tipo tarifa:</label>
+                <div>
+                    <label  for="exampleInputEmail3">Tipo de Vehículo:</label><br>
+                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input"><br>
+                    <label  for="exampleInputEmail3">Placa:</label><br>
+                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input"><br>
+                    <label  for="exampleInputEmail3">Tipo tarifa:</label><br>
                     <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">
                 </div>
             </div>
-        
+                <div class="col-xs-12 col-sm-12 col-md-8">
+                     <div class="panel panel-primary ">
+                          <!-- Default panel contents -->
+                          <div class="panel-heading">LUGARES DISPONIBLES</div>                         
+                          <!-- Table -->
+                          <table class="table table-bordered">
 
-    <script>
-                
-        $("#entrada").click(function(){
-           $.ajax({
-                url: "{{ route('entrada')}}",
-                data: "name="+name+"&_token={{ csrf_token()}}",
-                dataType: "json",
-                method: "POST",
-                success: function(result)
-                {
-                    if (result['result'] == 'ok')
-                    {
+                          @forelse($lugares_disponibles as $lugar)
+                             <tr>
+                                <th>Número de Parqueadero</th>
+                                <th>Ubicación</th>    
+                                <th>Estado</th>                            
+                                <th>Tipo de Vehiculo</th>                              
+                            </tr>
 
-                    }
-                    else
-                    {
+                            <tr>
+                                <td>1</td>
+                                <td>Bloque 1</td>
+                                <td>Activo</td>
+                                <td>Carro</td>
+                            </tr>
 
-                    }
-                },
-                fail: function(){
-                },
-                beforeSend: function(){
-                }
-            });
-        });
+                          @empty
+                            <p>No hay lugares desde la bd</p>
+                          @endforelse
 
-    </script>
+                           
+                          </table>
+                    </div>
+                </div>
+            </div>
 
-    </body>
-</html>
+
+    </form>
+@endsection
