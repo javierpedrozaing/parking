@@ -74,17 +74,17 @@ Home
 
                           @forelse($lugares_disponibles as $lugar)
                              <tr>
-                                <th>Número de Parqueadero</th>
-                                <th>Ubicación</th>    
+                                <th>Tipo lugar</th>                                
+                                <th>Ubiación</th>    
                                 <th>Estado</th>                            
-                                <th>Tipo de Vehiculo</th>                              
+                                <th>Descripción</th>                              
                             </tr>
 
                             <tr>
-                                <td>1</td>
-                                <td>Bloque 1</td>
-                                <td>Activo</td>
-                                <td>Carro</td>
+                                <td>{{ $lugar->tipo_lugar }}</td>
+                                <td>{{ $lugar->nombre_ubicacion }}</td>                                
+                                <td>{{ $lugar->estado_id }}</td>
+                                <td>{{ $lugar->descripcion_ubicacion }}</td>
                             </tr>
 
                           @empty

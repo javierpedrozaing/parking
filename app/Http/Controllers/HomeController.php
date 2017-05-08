@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Lugares;
 
 class HomeController extends Controller
 {
 	function welcome(){
-		$lugares_disponibles = []; // consulta a base de datos
+		$lugares_disponibles = Lugares::all();
+
+		//dd($lugares_disponibles); // para imprimir datos por consola
 		return view("welcome", ["lugares_disponibles" => $lugares_disponibles] );
 	}
 

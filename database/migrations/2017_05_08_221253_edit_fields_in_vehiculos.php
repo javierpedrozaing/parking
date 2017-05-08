@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableVehiculos extends Migration
+class EditFieldsInVehiculos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateTableVehiculos extends Migration
      */
     public function up()
     {
-        Schema::defaultStringLength(191);
-        Schema::create('vehiculo', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string("placa");
-            $table->string("color");
-            $table->timestamps();
+        Schema::table('vehiculo', function (Blueprint $table) {
+            $table->integer('user_id')->unsigned()->index()->nullable()->change(); 
+            $table->foreign('user_id')->references('id')->on('users');            
         });
     }
 
@@ -29,6 +26,8 @@ class CreateTableVehiculos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehiculos');
+        Schema::table('vehiculo', function (Blueprint $table) {
+            //
+        });
     }
 }
