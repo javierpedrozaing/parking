@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,4 +22,6 @@ Route::get('estacionamientos/{id}/delete', [
     'uses' => 'EstacionamientosController@destroy',
 ]);
 
-Route::get('/vehiculo/{id}', 'VehiculosController@show');
+Route::post('/vehiculo/{placa}', 'VehiclesController@exit')->name('exit_vehicle');
+
+Route::post('/vehiculo/{placa}', 'VehiclesController@entry')->name('entry_vehicle');

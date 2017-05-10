@@ -5,13 +5,34 @@ Home
 @endsection
 
  @section('contentForm')
-    <form class="form-inline" style="padding:5% 10%;">    
+
+    <form class="form-inline" action="/vehiculo/entry" method="post" style="padding:5% 10%;">    
         {{ csrf_field() }}    
-            <div class="row" >
+
+        <div class="row"  >
+             <div>
+                    @if ($errors->any())
+                    <div class="row alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)                        
+                            <li>{{ $error }}</li>                                                    
+                        @endforeach
+                    </ul>
+                    </div>
+                    {{-- @else
+                        <div class="row has-success">
+                            <p>Vehiculo registrado exitosamente</p>
+                        </div> --}}
+                    @endif
+
+            </div>
+        </div>    
+
+            <div class="row" >                
                 <div class="col-xs-12 col-sm-3 col-md-3">
                     <div class="form-group">
                        <label  for="exampleInputEmail3">Tipo de vehiculo:</label>
-                        <select class="form-control">
+                        <select class="form-control" name="tipo_carro">
                             <option>CARRO</option>
                             <option>CAMIONETA</option>
                             <option>MOTO</option>
@@ -21,16 +42,16 @@ Home
                     </div>
                 </div>    
                 <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="form-group">
+                    <div class="form-group @if ($errors->has('placa')) has-error @endif" >
                        <label  for="exampleInputEmail3">Placa:</label>
-                        <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">
+                        <input class="form-control" type="text" id="formGroupInputLarge" name="placa" placeholder="Placa del carro">
                         
                     </div>
                 </div> 
                   
                 <div class="col-xs-12 col-sm-1 col-md-3">
                     <div class="form-group">
-                        <button type="button" class="btn btn-primary btn-lg btn-block" id="entrada_btn">ENTRADA</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" id="entrada_btn">ENTRADA</button>
                     </div>
                     
                 </div>
@@ -43,6 +64,7 @@ Home
                 </div>            
 
             </div>
+    
 <br>
 <hr class="half-rule"/>
             <div class="row">   
@@ -71,16 +93,20 @@ Home
                           <div class="panel-heading">LUGARES DISPONIBLES</div>                         
                           <!-- Table -->
                           <table class="table table-bordered">
-
-                          @forelse($lugares_disponibles as $lugar)
                              <tr>
+                                <th></th>
                                 <th>Tipo lugar</th>                                
-                                <th>Ubiación</th>    
+                                <th>Nombre</th>    
                                 <th>Estado</th>                            
                                 <th>Descripción</th>                              
                             </tr>
 
+                          @forelse($lugares_disponibles as $lugar)
+                            
                             <tr>
+                                <td><input type="radio" name="lugar_id" value="{{ $lugar->id }}">
+                                
+                                 </td>
                                 <td>{{ $lugar->tipo_lugar }}</td>
                                 <td>{{ $lugar->nombre_ubicacion }}</td>                                
                                 <td>{{ $lugar->estado_id }}</td>
@@ -88,7 +114,7 @@ Home
                             </tr>
 
                           @empty
-                            <p>No hay lugares desde la bd</p>
+                            <p>NO HAY LUGARES DISPONIBLES</p>
                           @endforelse
 
                            
@@ -96,7 +122,7 @@ Home
                     </div>
                 </div>
             </div>
-
-
     </form>
+
+    
 @endsection

@@ -14,7 +14,7 @@ class CreateTableVehiculos extends Migration
     public function up()
     {
         Schema::defaultStringLength(191);
-        Schema::create('vehiculo', function (Blueprint $table) {
+        Schema::create('vehicles', function (Blueprint $table) {
             $table->increments('id');
             $table->string("placa");
             $table->string("color");
@@ -29,6 +29,6 @@ class CreateTableVehiculos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehiculos');
+        Schema::dropIfExists('vehicles');
     }
 }

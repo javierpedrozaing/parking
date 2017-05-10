@@ -13,10 +13,9 @@ class UniquePlacaInVehiculos extends Migration
      */
     public function up()
     {
-        Schema::table('vehiculo', function (Blueprint $table) {
-            $table->integer('placa')->unique()->change(); 
-            $table->integer('estado_id')->unsigned()->index()->nullable()->change(); 
-            $table->foreign('estado_id')->references('id')->on('estados_lugar');   
+        Schema::table('vehicles', function (Blueprint $table) {
+            $table->string('placa')->unique()->change(); 
+            
         });
     }
 
@@ -27,7 +26,7 @@ class UniquePlacaInVehiculos extends Migration
      */
     public function down()
     {
-        Schema::table('vehiculo', function (Blueprint $table) {
+        Schema::table('vehicles', function (Blueprint $table) {
             //
         });
     }

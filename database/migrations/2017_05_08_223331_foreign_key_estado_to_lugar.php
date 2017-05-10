@@ -13,9 +13,9 @@ class ForeignKeyEstadoToLugar extends Migration
      */
     public function up()
     {
-        Schema::table('lugar', function (Blueprint $table) {
+        Schema::table('parkings', function (Blueprint $table) {
             $table->integer('estado_id')->unsigned()->index()->nullable()->change(); 
-            $table->foreign('estado_id')->references('id')->on('estados_lugar');   
+            $table->foreign('estado_id')->references('id')->on('parking_state');   
         });
     }
 
@@ -26,7 +26,7 @@ class ForeignKeyEstadoToLugar extends Migration
      */
     public function down()
     {
-        Schema::table('lugar', function (Blueprint $table) {
+        Schema::table('parkings', function (Blueprint $table) {
             //
         });
     }

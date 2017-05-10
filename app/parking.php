@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Lugares extends Model
+class parking extends Model
 {
     //
 }

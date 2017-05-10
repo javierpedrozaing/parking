@@ -13,7 +13,7 @@ class CreateTableLugares extends Migration
      */
     public function up()
     {
-        Schema::create('lugar', function (Blueprint $table) {
+        Schema::create('parkings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipo_lugar');
             $table->string('nombre_ubicacion');
@@ -30,6 +30,6 @@ class CreateTableLugares extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Lugares');
+        Schema::dropIfExists('parkings');
     }
 }

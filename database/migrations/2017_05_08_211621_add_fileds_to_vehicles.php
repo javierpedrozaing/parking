@@ -13,7 +13,7 @@ class AddFiledsToVehicles extends Migration
      */
     public function up()
     {
-        Schema::table('vehiculo', function (Blueprint $table) {                        
+        Schema::table('vehicles', function (Blueprint $table) {                        
             $table->string("tipo_vehiculo");            
             $table->string("descripcion");
             $table->integer("lugar_id");
@@ -30,7 +30,7 @@ class AddFiledsToVehicles extends Migration
      */
     public function down()
     {
-        Schema::table('Vehiculo', function (Blueprint $table) {
+        Schema::table('vehicles', function (Blueprint $table) {
             //
         });
     }

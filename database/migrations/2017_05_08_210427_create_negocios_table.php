@@ -13,7 +13,7 @@ class CreateNegociosTable extends Migration
      */
     public function up()
     {
-        Schema::create('negocio', function (Blueprint $table) {
+        Schema::create('businesses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('razon_social');
             $table->string('representante_legal');
@@ -34,6 +34,6 @@ class CreateNegociosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('negocios');
+        Schema::dropIfExists('businesses');
     }
 }

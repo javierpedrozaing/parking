@@ -13,7 +13,7 @@ class CreateTableFactura extends Migration
      */
     public function up()
     {
-        Schema::create('factura', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
             $table->string('numero_factura');
             $table->string('numero_registro');
@@ -37,6 +37,6 @@ class CreateTableFactura extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('factura');
+        Schema::dropIfExists('invoices');
     }
 }

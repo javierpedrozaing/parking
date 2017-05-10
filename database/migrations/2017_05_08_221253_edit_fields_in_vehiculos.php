@@ -13,7 +13,7 @@ class EditFieldsInVehiculos extends Migration
      */
     public function up()
     {
-        Schema::table('vehiculo', function (Blueprint $table) {
+        Schema::table('vehicles', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->index()->nullable()->change(); 
             $table->foreign('user_id')->references('id')->on('users');            
         });
@@ -26,7 +26,7 @@ class EditFieldsInVehiculos extends Migration
      */
     public function down()
     {
-        Schema::table('vehiculo', function (Blueprint $table) {
+        Schema::table('vehicles', function (Blueprint $table) {
             //
         });
     }
