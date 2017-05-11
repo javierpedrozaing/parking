@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\vehicle;
 use App\parking;
+use App\tariff;
 use App\Http\Requests\CreateVehicleRequest;
 
 class VehiclesController extends Controller
@@ -23,11 +24,11 @@ class VehiclesController extends Controller
 		$lugar = $request->input('lugar_id');
 		$tipo_vehiculo = $request->input('tipo_vehiculo');
 		$tipo_tarifa = $request->input('tipo_tarifa');
-
 		$tipo_vehiculo = intval($tipo_vehiculo);
 		$lugar = intval($lugar);
+		$tipo_tarifa = strval($tipo_tarifa);
 		
-		// dd($lugar);
+		 
 		// registramos datos del vehiculo
 		$vehicle = vehicle::create([
 			'placa' => $placa,
@@ -48,14 +49,13 @@ class VehiclesController extends Controller
 		$lugar_asignado->estado_id = 2;
 		$lugar_asignado->save();		 
 
-		// consultamos las tarifas del tipo de vehiculo que ingreso
-		$tarifa_tipo_vehiculo = tariffs::where('type_vehicle_id', $tipo_vehiculo)->value('valor_minuto')->get();
+		// consultamos las tarifas del tipo de vehiculo que ingreso por fracción seleccionada
+		$tarifa_tipo_vehiculo = tariff::where('type_vehicle_id', $tipo_vehiculo)->value($tipo_tarifa);
 		
-		 dd($tarifa_tipo_vehiculo);
+		// dd($tarifa_tipo_vehiculo);
 
 		return redirect('/');
 	
-
 	}
 
 	public function exit_vehicle(){

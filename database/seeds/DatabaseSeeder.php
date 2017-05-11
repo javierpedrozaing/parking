@@ -50,7 +50,6 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
-        DB::table('users')->insert([
-        ]);
+       
     }
 }

@@ -4,12 +4,19 @@
 Home
 @endsection
 
- @section('contentForm')
+
+@section('content')
+
+    @if (Auth::guest())
+         <div>
+            <p>DEBES INGRESAR AL SISTEMA</p>
+        </div>
+    @else
 
     <form class="form-inline" action="/vehiculo/entry" method="post" style="padding:5% 10%;">    
         {{ csrf_field() }}    
 
-        <div class="row"  >
+        <div class="row">
              <div>
                     @if ($errors->any())
                     <div class="row alert alert-danger">
@@ -144,6 +151,11 @@ Home
                 </div>
             </div>
     </form>
-
     
+   
+@endif
+
 @endsection
+
+
+
