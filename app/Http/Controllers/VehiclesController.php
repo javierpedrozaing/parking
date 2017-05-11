@@ -9,7 +9,7 @@ use App\Http\Requests\CreateVehicleRequest;
 
 class VehiclesController extends Controller
 {
-     public function exit($placa)
+     public function show($placa)
 	{
 		// ir a buscar el carro por placa y mostrarlo en una vista 	
 		$vehiculos = vehicle::find($id);
@@ -21,9 +21,14 @@ class VehiclesController extends Controller
 
 		$placa = $request->input('placa');
 		$lugar = $request->input('lugar_id');
-		$lugar = intval($lugar);
+		$tipo_vehiculo = $request->input('tipo_vehiculo');
+		$tipo_tarifa = $request->input('tipo_tarifa');
 
+		$tipo_vehiculo = intval($tipo_vehiculo);
+		$lugar = intval($lugar);
+		
 		// dd($lugar);
+		// registramos datos del vehiculo
 		$vehicle = vehicle::create([
 			'placa' => $placa,
 			'color' => 'negro',
@@ -31,17 +36,29 @@ class VehiclesController extends Controller
 			'lugar_id' => $lugar,
 			'user_id' => '1',
 			'foto' => 'null',
-			'tipo_vehiculo' => $request->input('tipo_carro'),
+			'fecha_ingreso' => '2017-05-02',
+			'fecha_salida' => '2017-05-02',
+			'hora_ingreso' => '03:10:00',
+			'hora_salida' => '03:40:00',
+			'type_vehicle_id' => $tipo_vehiculo,
 		]);
 
+		// consultamos lugar cambiamos de estado a ocupado
 		$lugar_asignado = parking::find($lugar);
 		$lugar_asignado->estado_id = 2;
 		$lugar_asignado->save();		 
+
+		// consultamos las tarifas del tipo de vehiculo que ingreso
+		$tarifa_tipo_vehiculo = tariffs::where('type_vehicle_id', $tipo_vehiculo)->value('valor_minuto')->get();
 		
-		// dd($vehicle);
+		 dd($tarifa_tipo_vehiculo);
 
 		return redirect('/');
 	
 
+	}
+
+	public function exit_vehicle(){
+		
 	}
 }

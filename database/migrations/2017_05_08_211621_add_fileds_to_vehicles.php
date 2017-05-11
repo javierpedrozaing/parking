@@ -14,11 +14,15 @@ class AddFiledsToVehicles extends Migration
     public function up()
     {
         Schema::table('vehicles', function (Blueprint $table) {                        
-            $table->string("tipo_vehiculo");            
+            $table->integer("type_vehicle_id");            
             $table->string("descripcion");
             $table->integer("lugar_id");
             $table->integer("user_id");                
             $table->string("foto");
+            $table->date("fecha_ingreso");
+            $table->date("fecha_salida");
+            $table->time("hora_ingreso");
+            $table->time("hora_salida");
             
         });
     }

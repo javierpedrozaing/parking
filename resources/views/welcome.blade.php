@@ -29,18 +29,30 @@ Home
         </div>    
 
             <div class="row" >                
-                <div class="col-xs-12 col-sm-3 col-md-3">
+                <div class="col-xs-12 col-sm-3 col-md-2">
                     <div class="form-group">
                        <label  for="exampleInputEmail3">Tipo de vehiculo:</label>
-                        <select class="form-control" name="tipo_carro">
-                            <option>CARRO</option>
-                            <option>CAMIONETA</option>
-                            <option>MOTO</option>
-                            <option>CAMION</option>
-                            <option>CICLA</option>                            
+                        <select class="form-control" name="tipo_vehiculo">
+
+                            @foreach($tipo_vehiculos as $tipo)
+                                <option value="{{$tipo->id}}">{{$tipo->tipo}}</option>
+                            @endforeach
+                            
+                        </select>                        
+                    </div>                   
+                </div>    
+                <div class="col-xs-12 col-sm-3 col-md-2">
+                    <div class="form-group">
+                       <label  for="exampleInputEmail3">Tipo tarifa:</label>
+                        <select class="form-control" name="tipo_tarifa">
+                            <option value="valor_minuto">Por Minuto</option>
+                            <option value="valor_hora">Por Hora</option>
+                            <option value="valor_dia">Por Día</option>
+                            <option value="valor_noche">Por Noche</option>
+                            <option value="valor_mes">Por Mes</option>                                                                    
                         </select>                        
                     </div>
-                </div>    
+                </div>
                 <div class="col-xs-12 col-sm-4 col-md-3">
                     <div class="form-group @if ($errors->has('placa')) has-error @endif" >
                        <label  for="exampleInputEmail3">Placa:</label>
@@ -49,14 +61,14 @@ Home
                     </div>
                 </div> 
                   
-                <div class="col-xs-12 col-sm-1 col-md-3">
+                <div class="col-xs-12 col-sm-1 col-md-2">
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-lg btn-block" id="entrada_btn">ENTRADA</button>
                     </div>
                     
                 </div>
 
-                <div class="col-xs-12 col-sm-1 col-md-3">
+                <div class="col-xs-12 col-sm-1 col-md-1">
 
                      <div class="form-group">
                         <button type="button" class="btn btn-primary btn-lg btn-block" id="salida_btn">SALIDA</button>
@@ -69,25 +81,34 @@ Home
 <hr class="half-rule"/>
             <div class="row">   
             <div class="panel panel-primary col-xs-12 col-sm-4 col-md-4" style="padding:20px;">             
-                <div >
+                <div>
                     <label  for="exampleInputEmail3">Fecha Entrada:</label><br>
                     <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input"><br>
                     <label  for="exampleInputEmail3">Hora Entrada:</label><br>
                     <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">    <br>        
                     <label  for="exampleInputEmail3">Hora Salida:</label><br>
                     <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input"><br>
-                </div>
-
-                <div>
+                
                     <label  for="exampleInputEmail3">Tipo de Vehículo:</label><br>
                     <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input"><br>
                     <label  for="exampleInputEmail3">Placa:</label><br>
                     <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input"><br>
                     <label  for="exampleInputEmail3">Tipo tarifa:</label><br>
-                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">
+                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input"><br>
+                    <label  for="exampleInputEmail3">Lugar:</label><br>
+                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input"><br>
+
+                    <label  for="exampleInputEmail3">Impuesto:</label><br>
+                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input"><br>
+                    <label  for="exampleInputEmail3">Subtotal:</label><br>
+                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input"><br>
+                    <label  for="exampleInputEmail3">Total:</label><br>
+                    <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input"><br>
+                    <br>
+                    <input type="button" value="GENERAR TICKET" class="btn btn-primary btn-lg btn-block">
                 </div>
             </div>
-                <div class="col-xs-12 col-sm-12 col-md-8">
+                <div class="col-xs-12 col-sm-12 col-md-6">
                      <div class="panel panel-primary ">
                           <!-- Default panel contents -->
                           <div class="panel-heading">LUGARES DISPONIBLES</div>                         

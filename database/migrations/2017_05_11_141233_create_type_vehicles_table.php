@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UniquePlacaInVehiculos extends Migration
+class CreateTypeVehiclesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class UniquePlacaInVehiculos extends Migration
      */
     public function up()
     {
-        Schema::table('vehicles', function (Blueprint $table) {
-            $table->string('placa')->unique()->change(); 
-           
-            
+        Schema::create('type_vehicles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('tipo');
+            $table->timestamps();
         });
     }
 
@@ -27,8 +27,6 @@ class UniquePlacaInVehiculos extends Migration
      */
     public function down()
     {
-        Schema::table('vehicles', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('type_vehicles');
     }
 }

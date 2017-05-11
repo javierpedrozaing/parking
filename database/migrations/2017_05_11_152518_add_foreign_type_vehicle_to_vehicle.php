@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UniquePlacaInVehiculos extends Migration
+class AddForeignTypeVehicleToVehicle extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,8 @@ class UniquePlacaInVehiculos extends Migration
     public function up()
     {
         Schema::table('vehicles', function (Blueprint $table) {
-            $table->string('placa')->unique()->change(); 
-           
-            
+            $table->integer('type_vehicle_id')->unsigned()->index()->nullable()->change(); 
+            $table->foreign('type_vehicle_id')->references('id')->on('type_vehicles');            
         });
     }
 

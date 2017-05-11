@@ -14,11 +14,14 @@ class CreateTableTarifa extends Migration
     public function up()
     {
         Schema::create('tariffs', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('valor');
-            $table->string('impuesto');
-            $table->string('tipo_vehiculo');
-            $table->string('fraccion');
+            $table->increments('id');            
+            $table->string('impuesto');            
+            $table->string('valor_hora');
+            $table->string('valor_dia');
+            $table->string('valor_noche');
+            $table->string('valor_minuto');
+            $table->string('valor_mes');
+            $table->integer('type_vehicle_id');
 
             $table->timestamps();
         });

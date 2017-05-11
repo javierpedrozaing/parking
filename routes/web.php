@@ -22,6 +22,8 @@ Route::get('estacionamientos/{id}/delete', [
     'uses' => 'EstacionamientosController@destroy',
 ]);
 
-Route::post('/vehiculo/{placa}', 'VehiclesController@exit')->name('exit_vehicle');
+Route::post('/vehiculo/{placa}', 'VehiclesController@show')->name('show_vehicle');
+
+Route::post('/vehiculo/{placa}', 'VehiclesController@exit_vehicle')->name('exit_vehicle');
 
 Route::post('/vehiculo/{placa}', 'VehiclesController@entry')->name('entry_vehicle');
