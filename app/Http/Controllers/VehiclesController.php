@@ -1,25 +1,26 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\vehicle;
 use App\parking;
 use App\tariff;
+use App\type_vehicle;
 use App\Http\Requests\CreateVehicleRequest;
 
 class VehiclesController extends Controller
 {
-     public function show($placa)
+     public function show()
 	{
 		// ir a buscar el carro por placa y mostrarlo en una vista 	
-		$vehiculos = vehicle::find($id);
-		dd($vehiculos);	
-		return view('vehiculos.show', ['placa' => $placa]);
+		$vehiculos = vehicle::paginate(1);
+		// dd($vehiculos);	
+		return view('vehiculos.show', ['vehiculos' => $vehiculos]);
 	}
 
 	public function entry(CreateVehicleRequest $request){
 
+		$user_log = $request->user();
 		$placa = $request->input('placa');
 		$lugar = $request->input('lugar_id');
 		$tipo_vehiculo = $request->input('tipo_vehiculo');
@@ -35,7 +36,7 @@ class VehiclesController extends Controller
 			'color' => 'negro',
 			'descripcion' => '',
 			'lugar_id' => $lugar,
-			'user_id' => '1',
+			'user_id' => $user_log->id,
 			'foto' => 'null',
 			'fecha_ingreso' => '2017-05-02',
 			'fecha_salida' => '2017-05-02',
@@ -54,8 +55,16 @@ class VehiclesController extends Controller
 		
 		// dd($tarifa_tipo_vehiculo);
 
-		return redirect('/');
-	
+		return redirect('/');	
+	}
+
+	public function show_by_type($type_vehicle){
+		
+		$type_vehicle = type_vehicle::find($type_vehicle);
+
+		return view('vehiculos.show_by_type', [
+			'type_vehicle' =>$type_vehicle,
+			]);
 	}
 
 	public function exit_vehicle(){

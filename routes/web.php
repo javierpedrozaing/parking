@@ -22,10 +22,13 @@ Route::post('/entrada', array('as' => 'entrada', 'uses' => 'HomeController@get_d
 //     'uses' => 'EstacionamientosController@destroy',
 // ]);
 
-Route::post('/vehiculo/{placa}', 'VehiclesController@show')->name('show_vehicle');
+Route::get('/vehiculos', 'VehiclesController@show')->name('show_vehicle');
 
 Route::post('/vehiculo/{placa}', 'VehiclesController@exit_vehicle')->name('exit_vehicle');
 
-Route::post('/vehiculo/{placa}', 'VehiclesController@entry')->name('entry_vehicle');
+Route::post('/vehiculo/{placa}', 'VehiclesController@entry')->name('entry_vehicle')->middleware('auth');
 Auth::routes();
 
+Route::get('/type/{type_vehicle}', 'VehiclesController@show_by_type')->name('show_by_type');
+
+Route::get('/administration', 'HomeController@administration')->name('administration');

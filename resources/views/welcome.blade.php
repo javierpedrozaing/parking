@@ -12,7 +12,7 @@ Home
             <p>DEBES INGRESAR AL SISTEMA</p>
         </div>
     @else
-
+    <p>Estas logueado como {{$user->name }}</p>
     <form class="form-inline" action="/vehiculo/entry" method="post" style="padding:5% 10%;">    
         {{ csrf_field() }}    
 
@@ -37,6 +37,16 @@ Home
 
             <div class="row" >                
                 <div class="col-xs-12 col-sm-3 col-md-2">
+
+                    <div class="form-group">
+                        <label for="fecha">FECHA:</label>
+                        <input type="text" readonly="true"> 
+                        <br>
+                        <label for="fecha">HORA: </label>
+                        <input type="text" readonly="true"> 
+                    </div>
+
+
                     <div class="form-group">
                        <label  for="exampleInputEmail3">Tipo de vehiculo:</label>
                         <select class="form-control" name="tipo_vehiculo">

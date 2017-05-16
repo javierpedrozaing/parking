@@ -73,7 +73,7 @@
                             </li>
                           </ul>
                         </li>
-                        <li><a href="">Administración</a></li>
+                        <li><a href="/administration">Administración</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>

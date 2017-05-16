@@ -27,7 +27,8 @@ class EditFieldsInVehiculos extends Migration
     public function down()
     {
         Schema::table('vehicles', function (Blueprint $table) {
-            //
+            $table->dropForeign('vehicles_user_id_foreign');
+            $table->dropColumn('user_id');
         });
     }
 }
